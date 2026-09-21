@@ -11,13 +11,9 @@ import {
   CLINIC_MAPS_URL,
   CLINIC_WAZE_URL,
   CLINIC_MAP_EMBED_URL,
-  SPECIALTIES_DATA,
   DOCTOR_NAME,
   createWhatsAppLink,
-  VALUATION_PRICE,
-  FINANCING_INFO
 } from '../data/clinicData';
-import { CLINICAL_SPECIALTIES } from '../data/clinicalSpecialtiesData';
 import {
   MapPin,
   Phone,
@@ -26,7 +22,6 @@ import {
   CheckCircle,
   ExternalLink,
   ArrowRight,
-  CreditCard
 } from 'lucide-react';
 import {
   OfficialWhatsAppLogo,
@@ -35,10 +30,8 @@ import {
   WhatsAppIcon
 } from './OfficialSocialLogos';
 import {
-  LuxuryTreatmentSelect,
   LuxuryTimeSelect,
   LuxuryDatePicker,
-  TREATMENT_OPTIONS
 } from './ui/LuxuryFormControls';
 
 import { useBookingFormState } from '../hooks/useBookingFormState';
@@ -47,10 +40,8 @@ interface SocialAndContactSectionProps {
   preselectedSpecialty?: string;
 }
 
-export const SocialAndContactSection: React.FC<SocialAndContactSectionProps> = ({
-  preselectedSpecialty = 'rehabilitacion-oral',
-}) => {
-  const { formData, updateForm } = useBookingFormState(preselectedSpecialty);
+export const SocialAndContactSection: React.FC<SocialAndContactSectionProps> = () => {
+  const { formData, updateForm } = useBookingFormState();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const setFormData = (next: React.SetStateAction<typeof formData>) => {
@@ -64,22 +55,12 @@ export const SocialAndContactSection: React.FC<SocialAndContactSectionProps> = (
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const matchedTreatment = TREATMENT_OPTIONS.find((t) => t.id === formData.specialtyId);
-    const matchedService = SPECIALTIES_DATA.find((s) => s.id === formData.specialtyId)
-      || CLINICAL_SPECIALTIES.find((s) => s.id === formData.specialtyId);
-    const serviceName = matchedTreatment ? matchedTreatment.title : (matchedService ? matchedService.title : 'Consulta de Valoración Médica');
-
     const messageLines = [
       `*SOLICITUD DE CITA EN MIRANDA DENTAL STUDIO*`,
-      `👤 *Paciente:* ${formData.patientName}`,
-      `📞 *Teléfono:* ${formData.phone}`,
-      formData.email ? `✉️ *Email:* ${formData.email}` : '',
-      `🦷 *Motivo / Tratamiento:* ${serviceName}`,
+      `🪪 *Cédula:* ${formData.cedula}`,
+      `👤 *Nombre:* ${formData.firstName} ${formData.lastName}`,
       formData.preferredDate ? `📅 *Fecha Sugerida:* ${formData.preferredDate}` : '',
       `⏰ *Franja Horaria:* ${formData.preferredTime}`,
-      `💳 *Valoración:* $${VALUATION_PRICE} (Incluye Diagnóstico, Fotos y Rayos X)`,
-      formData.isEmergency ? `🚨 *Condición:* ¡PRESENTA DOLOR O URGENCIA PRIORITARIA!` : '',
-      formData.notes ? `📝 *Nota Médica:* ${formData.notes}` : '',
     ].filter(Boolean);
 
     const fullMessage = messageLines.join('\n');
@@ -106,7 +87,7 @@ export const SocialAndContactSection: React.FC<SocialAndContactSectionProps> = (
           className="text-center max-w-3xl mx-auto mb-5 sm:mb-7 space-y-2"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0D0D0D] tracking-tight">
-            Agenda tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C5A059] via-[#D4AF37] to-[#84631E]">Valoración de $15</span>
+            Agenda tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C5A059] via-[#D4AF37] to-[#84631E]">Valoración</span>
           </h2>
           <p className="text-sm sm:text-base text-stone-600 max-w-xl mx-auto">
             Diagnóstico clínico completo, fotografías y radiografías dentales con el {DOCTOR_NAME}. Atendemos de Lunes a Domingo.
@@ -137,59 +118,49 @@ export const SocialAndContactSection: React.FC<SocialAndContactSectionProps> = (
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Patient Name */}
+              {/* Cédula */}
               <div>
                 <label className="block text-[11px] font-bold text-[#0D0D0D] uppercase tracking-wider mb-1.5 pl-1">
-                  Nombre y Apellido *
+                  Cédula *
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Ej. María Fernanda Morales"
-                  value={formData.patientName}
-                  onChange={(e) => setFormData({ ...formData, patientName: e.target.value })}
+                  placeholder="Ej. 0501234567"
+                  value={formData.cedula}
+                  onChange={(e) => setFormData({ ...formData, cedula: e.target.value })}
                   className="w-full px-5 py-3.5 rounded-2xl bg-white border border-stone-300 shadow-xs focus:border-[#D4AF37] focus:ring-3 focus:ring-[#D4AF37]/20 text-stone-800 placeholder:text-stone-400 text-sm transition-all outline-none"
                 />
               </div>
 
-              {/* Phone & Email */}
+              {/* Nombre y Apellido */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-[11px] font-bold text-[#0D0D0D] uppercase tracking-wider mb-1.5 pl-1">
-                    Teléfono Celular / WhatsApp *
+                    Nombre *
                   </label>
                   <input
-                    type="tel"
+                    type="text"
                     required
-                    placeholder="+593 98 231 5408"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="Ej. María Fernanda"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                     className="w-full px-5 py-3.5 rounded-2xl bg-white border border-stone-300 shadow-xs focus:border-[#D4AF37] focus:ring-3 focus:ring-[#D4AF37]/20 text-stone-800 placeholder:text-stone-400 text-sm transition-all outline-none"
                   />
                 </div>
                 <div>
                   <label className="block text-[11px] font-bold text-[#0D0D0D] uppercase tracking-wider mb-1.5 pl-1">
-                    Correo Electrónico (Opcional)
+                    Apellido *
                   </label>
                   <input
-                    type="email"
-                    placeholder="paciente@correo.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    type="text"
+                    required
+                    placeholder="Ej. Morales"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                     className="w-full px-5 py-3.5 rounded-2xl bg-white border border-stone-300 shadow-xs focus:border-[#D4AF37] focus:ring-3 focus:ring-[#D4AF37]/20 text-stone-800 placeholder:text-stone-400 text-sm transition-all outline-none"
                   />
                 </div>
-              </div>
-
-              {/* Specialty Select (Custom Luxury Dropdown) */}
-              <div>
-                <label className="block text-[11px] font-bold text-[#0D0D0D] uppercase tracking-wider mb-1.5 pl-1">
-                  Tratamiento o Motivo de Consulta *
-                </label>
-                <LuxuryTreatmentSelect
-                  value={formData.specialtyId}
-                  onChange={(val) => setFormData({ ...formData, specialtyId: val })}
-                />
               </div>
 
               {/* Preferred Date & Time (Custom Luxury Dropdowns) */}
@@ -214,33 +185,6 @@ export const SocialAndContactSection: React.FC<SocialAndContactSectionProps> = (
                 </div>
               </div>
 
-              {/* Clinical Notes */}
-              <div>
-                <label className="block text-[11px] font-bold text-[#0D0D0D] uppercase tracking-wider mb-1.5 pl-1">
-                  Notas Adicionales o Síntomas
-                </label>
-                <textarea
-                  rows={3}
-                  placeholder="Describe brevemente tu molestia dental o el resultado estético que buscas..."
-                  value={formData.notes}
-                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="w-full px-5 py-3.5 rounded-2xl bg-white border border-stone-300 shadow-xs focus:border-[#D4AF37] focus:ring-3 focus:ring-[#D4AF37]/20 text-stone-800 placeholder:text-stone-400 text-sm transition-all outline-none resize-none"
-                />
-              </div>
-
-              {/* Emergency Checkbox */}
-              <label className="flex items-center gap-3 p-3.5 rounded-2xl bg-amber-50/70 border border-amber-200/80 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={formData.isEmergency}
-                  onChange={(e) => setFormData({ ...formData, isEmergency: e.target.checked })}
-                  className="w-4 h-4 rounded text-[#D4AF37] focus:ring-[#D4AF37] border-amber-300"
-                />
-                <span className="text-xs text-stone-800 font-medium leading-tight">
-                  Presento <strong className="font-bold text-amber-900">dolor agudo</strong> o requiero atención médica urgente prioritaria
-                </span>
-              </label>
-
               {/* Submit Button */}
               <motion.button
                 whileHover={{ scale: 1.015 }}
@@ -249,7 +193,7 @@ export const SocialAndContactSection: React.FC<SocialAndContactSectionProps> = (
                 className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A059] hover:from-[#C5A059] hover:to-[#84631E] text-[#0B0B0B] font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-lg shadow-amber-950/15 flex items-center justify-center gap-2.5 cursor-pointer mt-2 border border-[#D4AF37]/60"
               >
                 <WhatsAppIcon className="w-5 h-5 text-[#0B0B0B]" />
-                <span>Confirmar y Enviar Solicitud por WhatsApp ($15)</span>
+                <span>Confirmar y Enviar Solicitud por WhatsApp</span>
                 <ArrowRight className="w-4 h-4 text-[#0B0B0B]" />
               </motion.button>
 
@@ -368,17 +312,6 @@ export const SocialAndContactSection: React.FC<SocialAndContactSectionProps> = (
                     </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Formas de Pago & Crédito Directo (Exacto al PDF) */}
-              <div className="p-4 rounded-2xl bg-[#FAF7EE] border border-[#D4AF37]/40 space-y-2">
-                <div className="flex items-center gap-2 text-[#84631E]">
-                  <CreditCard className="w-4 h-4" />
-                  <h4 className="text-xs font-black uppercase tracking-wider">Formas de Pago & Financiamiento</h4>
-                </div>
-                <p className="text-xs text-stone-700 leading-relaxed">
-                  {FINANCING_INFO}
-                </p>
               </div>
             </div>
 

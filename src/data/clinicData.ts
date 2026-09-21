@@ -24,7 +24,7 @@ export function createWhatsAppLink(message: string): string {
   return `https://wa.me/${CLINIC_PHONE_RAW}?text=${encodeURIComponent(message)}`;
 }
 
-export const GENERAL_WA_MESSAGE = `Hola ${DOCTOR_NAME}, deseo agendar la consulta de valoración de $15 (incluye diagnóstico, fotografías y radiografías) en Miranda Dental Studio.`;
+export const GENERAL_WA_MESSAGE = `Hola ${DOCTOR_NAME}, deseo agendar una consulta de valoración (incluye diagnóstico, fotografías y radiografías) en Miranda Dental Studio.`;
 export const BOOKING_WA_MESSAGE = `Hola ${DOCTOR_NAME}, deseo agendar una cita en Miranda Dental Studio. ¿Qué días y horarios tiene disponibilidad?`;
 export const EMERGENCY_WA_MESSAGE = `¡URGENCIA DENTAL! Hola ${DOCTOR_NAME}, presento dolor agudo y requiero atención prioritaria en Miranda Dental Studio.`;
 
@@ -128,7 +128,7 @@ export const FAQ_DATA: FaqItem[] = [
   {
     id: "faq-1",
     question: "¿Qué incluye la primera valoración?",
-    answer: "Diagnóstico clínico integral, fotos HD, radiografías digitales y tu plan de tratamiento personalizado.",
+    answer: "Diagnóstico clínico integral, fotografías 100% profesionales, radiografías digitales y un plan de tratamiento adecuado a tu personalidad.",
     category: "general"
   },
   {
@@ -139,8 +139,8 @@ export const FAQ_DATA: FaqItem[] = [
   },
   {
     id: "faq-3",
-    question: "¿Cómo garantizan la bioseguridad?",
-    answer: "Esterilización hospitalaria con autoclave de grado médico e instrumental individual sellado para cada paciente.",
+    question: "¿Cómo garantizan la bioseguridad y la limpieza?",
+    answer: "Desinfectamos y esterilizamos todo el instrumental en paquetes individuales sellados que se abren exclusivamente para ti. Cuidamos tu salud en un consultorio 100% limpio, seguro y libre de bacterias.",
     category: "tratamientos"
   },
   {
@@ -159,9 +159,9 @@ export const SOCIAL_NETWORKS: SocialNetwork[] = [
     iconType: "whatsapp",
     color: "#25D366",
     bgColor: "bg-emerald-50 border-emerald-200 text-[#25D366]",
-    description: "Canal de atención directa y agendamiento médico con el Dr. Gabriel Miranda. Reserva tu valoración de $15 o consulta sobre tratamientos.",
+    description: "Canal de atención directa y agendamiento médico con el Dr. Gabriel Miranda. Reserva tu valoración o consulta sobre tratamientos.",
     actionText: "Chatear por WhatsApp",
-    url: createWhatsAppLink("Hola Dr. Gabriel Miranda, deseo agendar una consulta de valoración de $15 en Miranda Dental Studio."),
+    url: createWhatsAppLink("Hola Dr. Gabriel Miranda, deseo agendar una consulta de valoración en Miranda Dental Studio."),
     waMessage: "Hola Dr. Gabriel Miranda, deseo información para una cita.",
     image: "/specialties/rehabilitacion-oral.webp"
   },

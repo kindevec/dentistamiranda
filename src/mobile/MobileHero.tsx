@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { CLINIC_HOURS } from '../data/clinicData';
 import { OrganicDentalRibbon } from '../components/OrganicDentalRibbon';
 
 export interface MobileHeroProps {

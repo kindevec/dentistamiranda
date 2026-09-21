@@ -5,7 +5,6 @@ import {
   Clock,
   Phone,
   Mail,
-  AlertTriangle,
   CheckCircle2,
   ExternalLink
 } from 'lucide-react';
@@ -20,60 +19,46 @@ import {
   CLINIC_PHONE_DISPLAY,
   CLINIC_EMAIL,
   createWhatsAppLink,
-  DOCTOR_NAME,
-  VALUATION_PRICE
 } from '../data/clinicData';
 import {
-  LuxuryTreatmentSelect,
   LuxuryDatePicker,
   LuxuryTimeSelect
 } from '../components/ui/LuxuryFormControls';
 import {
   WhatsAppIcon
 } from '../components/OfficialSocialLogos';
-import { cn } from '../lib/utils';
 import { useBookingFormState } from '../hooks/useBookingFormState';
 
 interface MobileContactProps {
   preselectedSpecialty?: string;
 }
 
-export const MobileContact: React.FC<MobileContactProps> = ({
-  preselectedSpecialty = 'consulta-valoracion',
-}) => {
-  const { formData, updateField } = useBookingFormState(preselectedSpecialty);
+export const MobileContact: React.FC<MobileContactProps> = () => {
+  const { formData, updateField } = useBookingFormState();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const {
-    patientName,
-    phone,
-    email,
-    specialtyId: specialty,
+    cedula,
+    firstName,
+    lastName,
     preferredDate: date,
     preferredTime: time,
-    notes,
-    isEmergency,
   } = formData;
 
-  const setPatientName = (val: string) => updateField('patientName', val);
-  const setPhone = (val: string) => updateField('phone', val);
-  const setEmail = (val: string) => updateField('email', val);
-  const setSpecialty = (val: string) => updateField('specialtyId', val);
+  const setCedula = (val: string) => updateField('cedula', val);
+  const setFirstName = (val: string) => updateField('firstName', val);
+  const setLastName = (val: string) => updateField('lastName', val);
   const setDate = (val: string) => updateField('preferredDate', val);
   const setTime = (val: string) => updateField('preferredTime', val);
-  const setNotes = (val: string) => updateField('notes', val);
-  const setIsEmergency = (val: boolean) => updateField('isEmergency', val);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!patientName.trim() || !phone.trim()) return;
+    if (!cedula.trim() || !firstName.trim() || !lastName.trim()) return;
 
-    const emergencyHeader = isEmergency ? '🚨 *URGENCIA DENTAL PRIORITARIA* 🚨\n\n' : '';
-    const dateText = date ? `\n📅 *Fecha deseada:* ${date}` : '';
+    const dateText = date ? `\n📅 *Fecha sugerida:* ${date}` : '';
     const timeText = time ? `\n⏰ *Horario preferido:* ${time}` : '';
-    const notesText = notes.trim() ? `\n📝 *Detalles o síntomas:* ${notes.trim()}` : '';
 
-    const message = `${emergencyHeader}Hola ${DOCTOR_NAME}, mi nombre es *${patientName.trim()}*. Deseo agendar una consulta de valoración integral de $${VALUATION_PRICE} en Miranda Dental Studio.\n\n🦷 *Motivo de consulta:* ${specialty}${dateText}${timeText}\n📞 *Teléfono de contacto:* ${phone.trim()}${notesText}`;
+    const message = `*SOLICITUD DE CITA EN MIRANDA DENTAL STUDIO*\n\n🪪 *Cédula:* ${cedula.trim()}\n👤 *Paciente:* ${firstName.trim()} ${lastName.trim()}${dateText}${timeText}`;
 
     setIsSubmitted(true);
     window.open(createWhatsAppLink(message), '_blank');
@@ -89,7 +74,7 @@ export const MobileContact: React.FC<MobileContactProps> = ({
           <h2 className="text-2xl xs:text-3xl font-black tracking-tight leading-tight text-stone-900">
             Agenda tu{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#C5A059] to-[#84631E]">
-              Consulta
+              Valoración
             </span>
           </h2>
         </div>
@@ -114,62 +99,52 @@ export const MobileContact: React.FC<MobileContactProps> = ({
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-3.5">
-              {/* Patient Name */}
+              {/* Cédula */}
               <div>
-                <label htmlFor="patientName" className="block text-[11px] font-bold text-stone-700 mb-1">
-                  Nombre Completo *
+                <label htmlFor="cedula" className="block text-[11px] font-bold text-stone-700 mb-1">
+                  Cédula *
                 </label>
                 <input
-                  id="patientName"
+                  id="cedula"
                   type="text"
                   required
-                  placeholder="Ej. María Pérez"
-                  value={patientName}
-                  onChange={(e) => setPatientName(e.target.value)}
+                  placeholder="Ej. 0501234567"
+                  value={cedula}
+                  onChange={(e) => setCedula(e.target.value)}
                   className="w-full px-3.5 py-3 min-h-[44px] rounded-xl border border-stone-200 text-xs bg-stone-50/40 text-stone-800 focus:bg-white focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all"
                 />
               </div>
 
-              {/* WhatsApp Phone */}
-              <div>
-                <label htmlFor="phone" className="block text-[11px] font-bold text-stone-700 mb-1">
-                  Teléfono WhatsApp *
-                </label>
-                <input
-                  id="phone"
-                  type="tel"
-                  required
-                  placeholder="099 123 4567"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-3.5 py-3 min-h-[44px] rounded-xl border border-stone-200 text-xs bg-stone-50/40 text-stone-800 focus:bg-white focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all"
-                />
-              </div>
-
-              {/* Email (optional) */}
-              <div>
-                <label htmlFor="email" className="block text-[11px] font-bold text-stone-700 mb-1">
-                  Correo Electrónico (Opcional)
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="tu.correo@ejemplo.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-3.5 py-3 min-h-[44px] rounded-xl border border-stone-200 text-xs bg-stone-50/40 text-stone-800 focus:bg-white focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all"
-                />
-              </div>
-
-              {/* Treatment Dropdown */}
-              <div>
-                <label className="block text-[11px] font-bold text-stone-700 mb-1">
-                  Tratamiento o Motivo
-                </label>
-                <LuxuryTreatmentSelect
-                  value={specialty}
-                  onChange={(val) => setSpecialty(val)}
-                />
+              {/* Nombre y Apellido por separado */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor="firstName" className="block text-[11px] font-bold text-stone-700 mb-1">
+                    Nombre *
+                  </label>
+                  <input
+                    id="firstName"
+                    type="text"
+                    required
+                    placeholder="Ej. María Fernanda"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="w-full px-3.5 py-3 min-h-[44px] rounded-xl border border-stone-200 text-xs bg-stone-50/40 text-stone-800 focus:bg-white focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="lastName" className="block text-[11px] font-bold text-stone-700 mb-1">
+                    Apellido *
+                  </label>
+                  <input
+                    id="lastName"
+                    type="text"
+                    required
+                    placeholder="Ej. Morales"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="w-full px-3.5 py-3 min-h-[44px] rounded-xl border border-stone-200 text-xs bg-stone-50/40 text-stone-800 focus:bg-white focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all"
+                  />
+                </div>
               </div>
 
               {/* Date & Time Selectors */}
@@ -192,51 +167,6 @@ export const MobileContact: React.FC<MobileContactProps> = ({
                     onChange={(val) => setTime(val)}
                   />
                 </div>
-              </div>
-
-              {/* Emergency Switch */}
-              <div className="flex items-center justify-between p-3 rounded-xl bg-red-50/60 border border-red-200/70">
-                <div className="flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4 text-red-500 shrink-0" />
-                  <span className="text-xs font-bold text-red-700">
-                    ¿Es una urgencia odontológica?
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setIsEmergency(!isEmergency)}
-                  className="min-w-[44px] min-h-[44px] p-2.5 -mr-2.5 flex items-center justify-center cursor-pointer focus:outline-none"
-                  aria-label="Alternar urgencia"
-                >
-                  <div
-                    className={cn(
-                      'w-10 h-6 rounded-full transition-colors relative flex items-center',
-                      isEmergency ? 'bg-red-500' : 'bg-stone-300'
-                    )}
-                  >
-                    <div
-                      className={cn(
-                        'w-4 h-4 rounded-full bg-white absolute top-1 shadow-sm transition-transform duration-200',
-                        isEmergency ? 'translate-x-5' : 'translate-x-1'
-                      )}
-                    />
-                  </div>
-                </button>
-              </div>
-
-              {/* Notes */}
-              <div>
-                <label htmlFor="notes" className="block text-[11px] font-bold text-stone-700 mb-1">
-                  Notas Adicionales
-                </label>
-                <textarea
-                  id="notes"
-                  rows={2}
-                  placeholder="Describe brevemente lo que sientes..."
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs bg-stone-50/40 text-stone-800 focus:bg-white focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none transition-all resize-none"
-                />
               </div>
 
               {/* Submit Button with PC Animations */}

@@ -33,13 +33,13 @@ export const MobileEmergency: React.FC<MobileEmergencyProps> = () => {
       <div className="relative z-10 max-w-sm mx-auto my-1">
         {/* Title */}
         <h2 className="text-2xl xs:text-3xl font-black text-white tracking-tight leading-tight mb-2">
-          Consulta de Valoración<br />
+          Consulta de<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F3E5AB] via-[#D4AF37] to-[#C5A059]">
-            Médica por solo $15
+            Valoración Médica
           </span>
         </h2>
         <p className="text-xs text-stone-300 leading-relaxed mb-6">
-          Diagnóstico clínico completo con el <strong className="text-white font-bold">{DOCTOR_NAME}</strong>, fotografías dentales y radiografías por solo $15. Crédito directo disponible de $400 a $2,000.
+          Diagnóstico clínico completo con el <strong className="text-white font-bold">{DOCTOR_NAME}</strong>, fotografías dentales y radiografías. Crédito directo disponible de $400 a $2,000.
         </p>
 
         {/* Bullet Benefits List */}
@@ -50,7 +50,7 @@ export const MobileEmergency: React.FC<MobileEmergencyProps> = () => {
             </div>
             <div>
               <h3 className="text-xs font-black text-[#F3E5AB] leading-tight">
-                1. Diagnóstico $15
+                1. Diagnóstico Integral
               </h3>
               <p className="text-[11px] text-stone-300 leading-tight mt-0.5">
                 Clínico, fotos y rayos X de alta definición.
@@ -97,7 +97,7 @@ export const MobileEmergency: React.FC<MobileEmergencyProps> = () => {
           className="w-full py-4 px-4 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A059] hover:from-[#C5A059] hover:to-[#84631E] text-[#0B0B0B] font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 group shadow-xl shadow-amber-950/30 border border-[#D4AF37]/60"
         >
           <WhatsAppIcon className="w-4 h-4 text-[#0B0B0B]" />
-          <span>Reservar Valoración de $15 por WhatsApp</span>
+          <span>Reservar Valoración por WhatsApp</span>
           <ArrowRight className="w-3.5 h-3.5 text-[#0B0B0B]" />
         </motion.a>
       </div>

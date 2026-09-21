@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import {
-  DOCTOR_NAME,
   createWhatsAppLink,
   GENERAL_WA_MESSAGE,
 } from '../data/clinicData';

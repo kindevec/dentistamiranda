@@ -116,7 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             rel="noopener noreferrer"
             className="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A059] text-[#0B0B0B] font-black text-[11px] uppercase tracking-wider shadow-sm shadow-amber-950/15 active:scale-95 cursor-pointer inline-flex items-center justify-center border border-[#D4AF37]/40"
           >
-            Cita $15
+            Agendar Cita
           </a>
         </div>
 

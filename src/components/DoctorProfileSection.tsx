@@ -50,7 +50,7 @@ export const DoctorProfileSection: React.FC = () => {
             Conoce al <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C5A059] via-[#D4AF37] to-[#84631E]">{DOCTOR_NAME}</span>
           </h2>
           <p className="text-sm sm:text-base text-stone-600 max-w-2xl mx-auto">
-            Especialista con formación en rehabilitación oral y estética dental, enfocado en odontología biomimética y confort integral.
+            Especialista con formación en rehabilitación oral y estética dental, enfocado en odontología biomimética y conservadora.
           </p>
         </motion.div>
 
@@ -219,7 +219,7 @@ export const DoctorProfileSection: React.FC = () => {
                     <Cpu className="w-5 h-5 text-[#84631E]" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-[#0D0D0D]">Diagnóstico Integral & Radiografías ($15)</h4>
+                    <h4 className="text-sm font-bold text-[#0D0D0D]">Diagnóstico Integral & Radiografías</h4>
                     <p className="text-xs text-stone-600 mt-1 text-justify leading-relaxed">
                       Fotografías clínicas de alta definición y radiografías dentales para un diagnóstico certero sin sorpresas.
                     </p>

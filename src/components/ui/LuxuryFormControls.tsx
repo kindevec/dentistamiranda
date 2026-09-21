@@ -35,7 +35,6 @@ export const TREATMENT_OPTIONS: TreatmentOption[] = [
     subtitle: 'Diagnóstico 3D con Dr. Miranda, fotografías clínicas y radiografías dentales',
     category: 'valoracion',
     badge: 'Recomendada',
-    priceTag: '$15 USD',
   },
   // Servicios Básicos
   {

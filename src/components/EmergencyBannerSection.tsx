@@ -82,15 +82,15 @@ export const EmergencyBannerSection: React.FC<EmergencyBannerSectionProps> = ({ 
 
             {/* Title */}
             <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-              Consulta de Valoración Médica por{' '}
+              Consulta de{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F3E5AB] via-[#D4AF37] to-[#C5A059]">
-                solo $15
+                Valoración Médica
               </span>
             </motion.h2>
 
             {/* Subtext */}
             <motion.p variants={itemVariants} className="text-sm sm:text-base text-stone-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              Diagnóstico clínico completo con el <strong className="text-white font-bold">{DOCTOR_NAME}</strong>, fotografías dentales y radiografías por solo $15. Crédito directo disponible de $400 a $2,000.
+              Diagnóstico clínico completo con el <strong className="text-white font-bold">{DOCTOR_NAME}</strong>, fotografías dentales y radiografías. Crédito directo disponible de $400 a $2,000.
             </motion.p>
 
             {/* 3 Pillars: Valoración, Crédito Directo, Horarios (Esbeltos, Mismo Tamaño, Cero Espacio Excesivo) */}
@@ -102,7 +102,7 @@ export const EmergencyBannerSection: React.FC<EmergencyBannerSectionProps> = ({ 
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className="text-xs font-black text-[#F3E5AB] uppercase tracking-wide truncate">
-                    1. Diagnóstico $15
+                    1. Diagnóstico Integral
                   </h3>
                   <p className="text-[11px] text-stone-300 leading-snug truncate sm:whitespace-normal">
                     Clínico, fotos y rayos X.
@@ -152,7 +152,7 @@ export const EmergencyBannerSection: React.FC<EmergencyBannerSectionProps> = ({ 
                 className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A059] hover:from-[#C5A059] hover:to-[#84631E] text-[#0B0B0B] font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all shadow-xl shadow-amber-950/30 cursor-pointer border border-[#D4AF37]/60"
               >
                 <WhatsAppIcon className="w-4 h-4 text-[#0B0B0B]" />
-                <span>Reservar Valoración de $15 por WhatsApp</span>
+                <span>Reservar Valoración por WhatsApp</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#0B0B0B]" />
               </motion.a>
             </motion.div>
