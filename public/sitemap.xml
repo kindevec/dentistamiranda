@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://dentistamiranda.web.app/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://dentistamiranda.web.app/dr-gabriel-miranda.webp</image:loc>
+      <image:title>Dr. Gabriel Miranda — Odontólogo en La Maná</image:title>
+      <image:caption>Miranda Dental Studio en La Maná, Cotopaxi</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dentistamiranda.web.app/og-image.png</image:loc>
+      <image:title>Miranda Dental Studio — Centro de Rehabilitación Oral y Estética Dental</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://dentistamiranda.web.app/clinica-miranda.webp</image:loc>
+      <image:title>Consultorio e Instalaciones de Miranda Dental Studio La Maná</image:title>
+    </image:image>
+  </url>
+</urlset>

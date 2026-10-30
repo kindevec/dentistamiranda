@@ -125,7 +125,7 @@ export const MobileHero: React.FC<MobileHeroProps> = () => {
             <br />
             <span>Domingo: 09:00 AM - 14:00 PM</span>
           </p>
-          <p className="font-semibold text-stone-700">Av. 19 de Mayo (Ruta E30) y Velasco Ibarra • Edif. Color Gris, PB (Junto a IntegralMedic)</p>
+          <p className="font-semibold text-stone-700">Av. 19 de Mayo (Ruta E30) y Velasco Ibarra • Edif. Color Gris, PB (Junto a IntegralMedic) • La Maná</p>
         </div>
       </div>
     </section>

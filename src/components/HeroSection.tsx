@@ -186,7 +186,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     <MapPin className="w-3.5 h-3.5 text-[#84631E] shrink-0 mt-0.5" />
                     <div className="text-[11px] sm:text-xs leading-snug text-stone-700 font-semibold">
                       <span>Av. 19 de Mayo (Ruta E30) y Velasco Ibarra</span>
-                      <span className="font-normal text-stone-500 block">Edif. Color Gris, PB (Junto a IntegralMedic)</span>
+                      <span className="font-normal text-stone-500 block">Edif. Color Gris, PB (Junto a IntegralMedic) • La Maná, Cotopaxi</span>
                     </div>
                   </div>
                 </div>
